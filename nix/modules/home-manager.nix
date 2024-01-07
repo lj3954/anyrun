@@ -149,6 +149,30 @@ in {
         default = null;
         description = "Limit amount of entries shown in total";
       };
+
+      bindingClose = mkOption {
+        type = listOf str;
+        default = ["Escape"];
+        description = "Bindings to close the launcher";
+      };
+
+      bindingUp = mkOption {
+        type = listOf str;
+        default = ["Up" "Shift Tab"];
+        description = "Bindings to select the entry above";
+      };
+
+      bindingDown = mkOption {
+        type = listOf str;
+        default = ["Down" "Tab"];
+        description = "Bindings to select the entry below";
+      };
+
+      bindingSelect = mkOption {
+        type = listOf str;
+        default = ["Return"];
+        description = "Bindings to select an entry";
+      };
     };
 
     extraCss = mkOption {
@@ -239,6 +263,10 @@ in {
             else "Some(${toString cfg.config.maxEntries})"
           },
             plugins: ${toJSON parsedPlugins},
+            binding_close: ${toJSON cfg.config.bindingClose},
+            binding_up: ${toJSON cfg.config.bindingUp},
+            binding_down: ${toJSON cfg.config.bindingDown},
+            binding_select: ${toJSON cfg.config.bindingSelect},
           )
         '';
       }
